@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  mount RailsAdmin::Engine => "/admin", as: "rails_admin"
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   # Admin authentication routes
-  devise_for :admin_users, path: 'admin_users'
+  devise_for :admin_users, path: "admin_users"
 
   # Home page
   root "pages#home"
@@ -22,9 +22,9 @@ Rails.application.routes.draw do
   resources :products, only: [:index, :show]
 
   resource :cart, only: [:show] do
-    post 'add_item/:product_id', to: 'carts#add_item', as: :add_item
-    delete 'remove_item/:product_id', to: 'carts#remove_item', as: :remove_item
-    get 'checkout', to: 'carts#checkout', as: :checkout
+    post "add_item/:product_id", to: "carts#add_item", as: :add_item
+    delete "remove_item/:product_id", to: "carts#remove_item", as: :remove_item
+    get "checkout", to: "carts#checkout", as: :checkout
   end
 
   authenticate :user do

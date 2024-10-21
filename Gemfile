@@ -17,6 +17,8 @@ gem "omniauth" # Authentication
 gem "omniauth-google-oauth2" # Google OAuth2
 gem "sassc-rails" # SASSC for Rails
 gem "ostruct" # OpenStruct
+gem "image_processing" # Image processing
+gem "kaminari" # Pagination
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude" # Debug
@@ -30,6 +32,3 @@ group :development do
   gem "pry-byebug" # Debugging with Pry
   gem "html2haml" # Convert HTML to Haml
 end
-
-
-gem "cssbundling-rails"

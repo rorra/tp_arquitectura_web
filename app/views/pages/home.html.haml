@@ -1,2 +1,12 @@
-%h1 Pages#home
-%p Find me in app/views/pages/home.html.haml
+%h1 Categories
+%ul
+  - @categories.each do |category|
+    %li= link_to category.name, category_path(category)
+
+%h1 Featured Products
+%ul
+  - @featured_products.each do |product|
+    %li
+      link_to product.name, product_path(product)
+      -
+      = product.price

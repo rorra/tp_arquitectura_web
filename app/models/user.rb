@@ -6,4 +6,8 @@ class User < ApplicationRecord
   has_many :orders
 
   validates :name, presence: true
+
+  def current_cart
+    carts.find_or_create_by(status: 'pending')
+  end
 end
