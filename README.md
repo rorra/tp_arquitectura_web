@@ -1,24 +1,47 @@
-# README
+# Setup
+1. Instalar ruby 3.3.5
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+```bash
+rvm install 3.3.5
+```
 
-Things you may want to cover:
+2. Activar ruby 3.3.5 e instalar las librerias
 
-* Ruby version
+```bash
+rvm use
+bundle install
+```
 
-* System dependencies
+3. Crear la base de datos
 
-* Configuration
+```bash
+bundle exec rails db:create
+bundle exec rails db:migrate
+```
 
-* Database creation
+4. Configurar las credenciales
 
-* Database initialization
+```bash
+EDITOR=vim bundle exec rails credentials:edit
+```
 
-* How to run the test suite
+Las credenciales deben tener la siguiente estructura:
 
-* Services (job queues, cache servers, search engines, etc.)
+```yaml
+secret_key_base: SECRET_KEY_BASE
 
-* Deployment instructions
+google_oauth_client_id: GOOGLE_OAUTH_CLIENT_ID
+google_oauth_client_secret: GOOGLE_OAUTH_CLIENT_SECRET
+```
 
-* ...
+5. Iniciar los datos de la base de datos
+
+```bash
+bundle exec rails db:seed
+```
+
+6. Iniciar el servidor
+
+```bash
+bundle exec rails server
+```

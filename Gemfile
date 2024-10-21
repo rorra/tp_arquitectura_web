@@ -10,6 +10,13 @@ gem "turbo-rails" # Hotwire's SPA-like page accelerator [https://turbo.hotwired.
 gem "stimulus-rails" # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "tzinfo-data", platforms: %i[ windows jruby ] # Timezone data for TZInfo
 gem "bootsnap", require: false # Reduces boot times through caching; required in config/boot.rb
+gem "devise" # Authentication
+gem "rails_admin" # Admin interface
+gem "cssbundling-rails" # CSS Bundling
+gem "omniauth" # Authentication
+gem "omniauth-google-oauth2" # Google OAuth2
+gem "sassc-rails" # SASSC for Rails
+gem "ostruct" # OpenStruct
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude" # Debug
@@ -21,5 +28,8 @@ end
 group :development do
   gem "web-console" # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "pry-byebug" # Debugging with Pry
+  gem "html2haml" # Convert HTML to Haml
 end
 
+
+gem "cssbundling-rails"
