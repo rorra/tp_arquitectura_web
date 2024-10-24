@@ -69,7 +69,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_24_013953) do
   end
 
   create_table "carts", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_carts_on_user_id"
@@ -97,6 +97,11 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_24_013953) do
     t.integer "user_id", null: false
     t.decimal "total_price", precision: 10, scale: 2, null: false
     t.integer "status", default: 0, null: false
+    t.string "state"
+    t.string "city"
+    t.string "zip"
+    t.string "address"
+    t.string "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_orders_on_user_id"
@@ -108,6 +113,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_24_013953) do
     t.decimal "price", precision: 10, scale: 2, null: false
     t.integer "stock", default: 0, null: false
     t.integer "category_id", null: false
+    t.boolean "featured", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_products_on_category_id"

@@ -7,6 +7,6 @@
 %ul
   - @featured_products.each do |product|
     %li
-      link_to product.name, product_path(product)
+      = link_to product.name, product_path(product)
       -
       = product.price

@@ -1,0 +1,9 @@
+%h1= @product.name
+
+- if @product.main_image.attached?
+  = image_tag(@product.main_image.variant(resize_to_fit: [300, 300]))
+
+%p= @product.description
+%p= "Price: #{number_to_currency(@product.price)}"
+
+= button_to 'Add to Cart', add_item_cart_path(@product), method: :post

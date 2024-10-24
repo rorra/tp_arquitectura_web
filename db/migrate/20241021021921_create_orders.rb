@@ -4,6 +4,11 @@ class CreateOrders < ActiveRecord::Migration[7.2]
       t.references :user, foreign_key: true, null: false
       t.decimal :total_price, precision: 10, scale: 2, null: false
       t.integer :status, default: 0, null: false # pending: 0, confirmed: 1, shipped: 2
+      t.string :state
+      t.string :city
+      t.string :zip
+      t.string :address
+      t.string :phone
 
       t.timestamps
     end

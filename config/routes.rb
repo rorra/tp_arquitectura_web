@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   # App Routes below
   resources :products, only: [:index, :show]
 
+  resources :categories, only: [:show]
+
   resource :cart, only: [:show] do
     post "add_item/:product_id", to: "carts#add_item", as: :add_item
     delete "remove_item/:product_id", to: "carts#remove_item", as: :remove_item
@@ -29,5 +31,9 @@ Rails.application.routes.draw do
 
   authenticate :user do
     resources :orders, only: [:index, :show, :create]
+    resources :payments, only: [:new, :create] do
+      get 'success', on: :collection
+      get 'failure', on: :collection
+    end
   end
 end

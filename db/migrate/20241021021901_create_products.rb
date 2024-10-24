@@ -6,6 +6,7 @@ class CreateProducts < ActiveRecord::Migration[7.2]
       t.decimal :price, precision: 10, scale: 2, null: false
       t.integer :stock, null: false, default: 0
       t.references :category, foreign_key: true, null: false
+      t.boolean :featured, default: false, null: false
 
       t.timestamps
     end

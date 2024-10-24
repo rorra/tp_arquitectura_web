@@ -1,0 +1,9 @@
+%h1 Your Shopping Cart
+%ul
+  - @cart_items.each do |item|
+    %li
+      = "#{item.product.name} - Quantity: #{item.quantity}"
+      = link_to 'Add one more', cart_add_item_path(item.product), method: :post
+      = link_to 'Remove one', cart_remove_item_path(item.product), method: :delete
+      = link_to 'Remove all', cart_remove_item_path(item.product), method: :delete, data: { confirm: 'Are you sure you want to remove all units of this product?' }
+= link_to 'Proceed to Checkout', checkout_cart_path, method: :get

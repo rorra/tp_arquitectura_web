@@ -1,0 +1,10 @@
+%h1= @category.name
+
+%ul
+  - @products.each do |product|
+    %li
+      %h2= link_to product.name, product_path(product)
+      = image_tag(product.main_image.variant(resize_to_fit: [150, 150])) if product.main_image.attached?
+      %p= "Price: #{product.price}"
+
+= paginate @products

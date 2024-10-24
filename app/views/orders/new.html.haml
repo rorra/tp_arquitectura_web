@@ -1,0 +1,19 @@
+%h1 Finalize Your Purchase
+= form_for @order do |f|
+  .field
+    = f.label :state, 'Provincia'
+    = f.text_field :state
+  .field
+    = f.label :city, 'Ciudad'
+    = f.text_field :city
+  .field
+    = f.label :zip, 'Codigo Postal'
+    = f.text_field :zip
+  .field
+    = f.label :address, 'Direccion'
+    = f.text_field :address
+  .field
+    = f.label :phone, 'Telefono'
+    = f.text_field :phone
+  .actions
+    = f.submit 'Place Order'

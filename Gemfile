@@ -19,6 +19,7 @@ gem "sassc-rails" # SASSC for Rails
 gem "ostruct" # OpenStruct
 gem "image_processing" # Image processing
 gem "kaminari" # Pagination
+gem "mercadopago-sdk" # Mercado Pago SDK
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude" # Debug
@@ -31,4 +32,5 @@ group :development do
   gem "web-console" # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "pry-byebug" # Debugging with Pry
   gem "html2haml" # Convert HTML to Haml
+  gem "rest-client" # REST Client
 end
