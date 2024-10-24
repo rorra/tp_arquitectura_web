@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem "rails", "~> 7.2.1", ">= 7.2.1.1" # Rails
+gem "rails", "~> 7.2.1" # Rails
 gem "haml-rails" # Haml for templating
 gem "sprockets-rails" # Asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sqlite3", ">= 1.4" # Database
