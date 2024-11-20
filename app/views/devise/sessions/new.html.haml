@@ -1,17 +1,41 @@
-%h2 Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    %br/
-    = f.password_field :password, autocomplete: "current-password"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "devise/shared/links"
+.container.py-5
+  .row.justify-content-center
+    .col-md-6
+      .card.shadow
+        .card-body.p-4
+          %h2.text-center.mb-4 Sign In
+
+          = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+            .mb-3
+              = f.label :email, class: "form-label"
+              = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"
+
+            .mb-3
+              = f.label :password, class: "form-label"
+              = f.password_field :password, autocomplete: "current-password", class: "form-control"
+
+            - if devise_mapping.rememberable?
+              .mb-3.form-check
+                = f.check_box :remember_me, class: "form-check-input"
+                = f.label :remember_me, class: "form-check-label"
+
+            .d-grid.gap-2
+              = f.submit "Sign in", class: "btn btn-primary btn-lg"
+
+          %hr.my-4
+
+          .text-center
+            - if devise_mapping.registerable?
+              %p.mb-2
+                New user?
+                = link_to "Sign up", new_registration_path(resource_name), class: "text-decoration-none"
+
+            - if devise_mapping.recoverable?
+              = link_to "Forgot your password?", new_password_path(resource_name), class: "text-decoration-none"
+
+          - if devise_mapping.omniauthable?
+            .d-grid.gap-2.mt-3
+              - resource_class.omniauth_providers.each do |provider|
+                = button_to omniauth_authorize_path(resource_name, provider), class: "btn btn-outline-secondary", data: { turbo: false } do
+                  %i.bi.bi-google.me-2
+                  Sign in with #{OmniAuth::Utils.camelize(provider)}

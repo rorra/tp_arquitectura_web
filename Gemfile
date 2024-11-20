@@ -20,6 +20,7 @@ gem "ostruct" # OpenStruct
 gem "image_processing" # Image processing
 gem "mini_magick" # MiniMagick for image processing
 gem "kaminari" # Pagination
+gem 'bootstrap5-kaminari-views' # Bootstrap 5 Kaminari views
 gem "mercadopago-sdk" # Mercado Pago SDK
 
 group :development, :test do

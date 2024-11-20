@@ -1,9 +1,59 @@
-%h1= @product.name
+.container
+  .row.mt-4
+    .col-md-6
+      .card
+        - if @product.main_image.attached?
+          = image_tag @product.main_image.variant(resize_to_fill: [600, 600]), class: "card-img-top"
+        - else
+          = image_tag "placeholder.png", class: "card-img-top"
 
-- if @product.main_image.attached?
-  = image_tag(@product.main_image.variant(resize_to_fit: [300, 300]))
+        - if @product.additional_images.attached?
+          .row.mt-2
+            - @product.additional_images.each do |image|
+              .col-3
+                = image_tag image.variant(resize_to_fill: [150, 150]), class: "img-thumbnail"
 
-%p= @product.description
-%p= "Price: #{number_to_currency(@product.price)}"
+    .col-md-6
+      %h1.mb-3= @product.name
+      %p.lead.text-muted= link_to @product.category.name, category_path(@product.category)
 
-= button_to 'Add to Cart', add_item_cart_path(@product), method: :post
+      .card.mb-3
+        .card-body
+          %h2.card-title.text-primary= number_to_currency(@product.price)
+          - if @product.stock > 0
+            %p.card-text.text-success
+              %i.bi.bi-check-circle
+              In Stock (#{@product.stock} available)
+            = button_to add_item_cart_path(@product), method: :post, class: "btn btn-primary btn-lg w-100" do
+              %i.bi.bi-cart-plus
+              Add to Cart
+          - else
+            %p.card-text.text-danger
+              %i.bi.bi-x-circle
+              Out of Stock
+            %button.btn.btn-secondary.btn-lg.w-100{disabled: true} Out of Stock
+
+      .card
+        .card-body
+          %h3.card-title Description
+          %p.card-text= @product.description
+
+  - if @product.category.products.where.not(id: @product.id).exists?
+    %section.mt-5
+      %h3.mb-4 Related Products
+      .row.row-cols-1.row-cols-md-2.row-cols-lg-4.g-4
+        - @product.category.products.where.not(id: @product.id).limit(4).each do |related_product|
+          .col
+            .card.h-100
+              = link_to product_path(related_product), class: "text-decoration-none" do
+                - if related_product.main_image.attached?
+                  = image_tag related_product.main_image.variant(resize_to_fill: [300, 300]), class: "card-img-top"
+                - else
+                  = image_tag "placeholder.png", class: "card-img-top"
+              .card-body
+                %h5.card-title
+                  = link_to related_product.name, product_path(related_product), class: "text-decoration-none text-dark"
+                %p.card-text= number_to_currency(related_product.price)
+                = button_to add_item_cart_path(product_id: related_product.id), method: :post, class: "btn btn-outline-primary" do
+                  %i.bi.bi-cart-plus
+                  Add to Cart

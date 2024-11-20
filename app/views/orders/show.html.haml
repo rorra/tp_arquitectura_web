@@ -1,0 +1,58 @@
+.container
+  .row.mt-4
+    .col-lg-8
+      .card
+        .card-header.bg-white
+          .d-flex.justify-content-between.align-items-center
+            %h2.h4.mb-0
+              Order ##{@order.id}
+            %span{class: "badge bg-#{order_status_color(@order.status)}"}
+              = @order.status.titleize
+
+        .card-body
+          %h5.card-title.mb-4 Order Items
+          - @order.order_items.each do |item|
+            .row.border-bottom.py-3
+              .col-md-2
+                - if item.product.main_image.attached?
+                  = image_tag item.product.main_image.variant(resize_to_fill: [80, 80]), class: "img-fluid rounded"
+                - else
+                  = image_tag "placeholder.png", class: "img-fluid rounded"
+              .col-md-6
+                %h6= item.product.name
+                %small.text-muted
+                  Unit Price: #{number_to_currency(item.unit_price)}
+              .col-md-2.text-center
+                %span.badge.bg-secondary= "x#{item.quantity}"
+              .col-md-2.text-end
+                = number_to_currency(item.total_price)
+
+          .mt-4
+            %h5.card-title Shipping Address
+            %p.mb-1= @order.address
+            %p.mb-1
+              = @order.city
+              = @order.state
+              = @order.zip
+            %p.mb-0
+              %i.bi.bi-telephone
+              = @order.phone
+
+    .col-lg-4
+      .card
+        .card-header.bg-white
+          %h3.h5.mb-0 Order Summary
+        .card-body
+          .d-flex.justify-content-between.mb-2
+            %span Total Items:
+            %span= @order.order_items.sum(&:quantity)
+          %hr
+          .d-flex.justify-content-between.mb-2
+            %span.h5 Total:
+            %span.h5= number_to_currency(@order.total_price)
+
+          - if @order.pending?
+            = button_to "Cancel Order", cancel_order_path(@order),
+                      method: :patch,
+                      class: "btn btn-danger w-100 mt-3",
+                      data: { turbo_confirm: "Are you sure you want to cancel this order?" }

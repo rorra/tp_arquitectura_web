@@ -2,15 +2,16 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => "/admin", as: "rails_admin"
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Render dynamic PWA files from app/views/pwa/*
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
-  # User authentication routes
-  devise_for :users
+  # User authentication routes with custom controller
+  devise_for :users, controllers: {
+    registrations: 'users/registrations'
+  }
 
   # Admin authentication routes
   devise_for :admin_users, path: "admin_users"
@@ -20,7 +21,6 @@ Rails.application.routes.draw do
 
   # App Routes below
   resources :products, only: [:index, :show]
-
   resources :categories, only: [:show]
 
   resource :cart, only: [:show] do
@@ -30,10 +30,20 @@ Rails.application.routes.draw do
   end
 
   authenticate :user do
-    resources :orders, only: [:index, :show, :create]
+    resources :orders, only: [:new, :index, :show, :create] do
+      collection do
+        get :confirm
+      end
+      member do
+        patch :cancel
+      end
+    end
+
     resources :payments, only: [:new, :create] do
-      get 'success', on: :collection
-      get 'failure', on: :collection
+      collection do
+        get :success
+        get :failure
+      end
     end
   end
 end
