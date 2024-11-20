@@ -1,25 +1,31 @@
-%table.table.table-hover
-  %thead
-    %tr
-      %th Order #
-      %th Date
-      %th Total
-      %th Status
-      %th Actions
-  %tbody
-    - @orders.each do |order|
-      %tr
-        %td= "##{order.id}"
-        %td= order.created_at.strftime("%B %d, %Y")
-        %td= number_to_currency(order.total_price)
-        %td
-          %span{class: "badge bg-#{order_status_color(order.status)}"}
-            = order.status.titleize
-        %td
-          = link_to order_path(order), class: "btn btn-sm btn-outline-primary" do
-            %i.bi.bi-eye
-            View Details
-          - if order.pending?
-            = link_to new_payment_path(order_id: order.id), class: "btn btn-sm btn-success" do
-              %i.bi.bi-credit-card
-              Pay Now
+.container.mt-4
+  .row
+    .col-12
+      %h2.mb-4= t('views.orders.title')
+      .table-responsive
+        %table.table.table-hover
+          %thead
+            %tr
+              %th= t('views.orders.order_number')
+              %th= t('views.orders.date')
+              %th= t('views.orders.total')
+              %th= t('views.orders.status')
+              %th= t('views.orders.actions')
+          %tbody
+            - @orders.each do |order|
+              %tr
+                %td= "##{order.id}"
+                %td= l(order.created_at, format: :long)
+                %td= number_to_currency(order.total_price)
+                %td
+                  %span{class: "badge bg-#{order_status_color(order.status)}"}
+                    = order.status_text
+                %td
+                  = link_to order_path(order), class: "btn btn-sm btn-outline-primary" do
+                    %i.bi.bi-eye
+                    = t('views.orders.view_details')
+                  - if order.pending?
+                    = link_to new_payment_path(order_id: order.id), class: "btn btn-sm btn-success ms-2" do
+                      %i.bi.bi-credit-card
+                      = t('views.orders.pay_now')
+      = paginate @orders, theme: 'bootstrap-5'

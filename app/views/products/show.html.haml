@@ -23,24 +23,24 @@
           - if @product.stock > 0
             %p.card-text.text-success
               %i.bi.bi-check-circle
-              In Stock (#{@product.stock} available)
+              = t('views.products.in_stock', count: @product.stock)
             = button_to add_item_cart_path(@product), method: :post, class: "btn btn-primary btn-lg w-100" do
               %i.bi.bi-cart-plus
-              Add to Cart
+              = t('views.products.add_to_cart')
           - else
             %p.card-text.text-danger
               %i.bi.bi-x-circle
-              Out of Stock
-            %button.btn.btn-secondary.btn-lg.w-100{disabled: true} Out of Stock
+              = t('views.products.out_of_stock')
+            %button.btn.btn-secondary.btn-lg.w-100{disabled: true}= t('views.products.out_of_stock')
 
       .card
         .card-body
-          %h3.card-title Description
+          %h3.card-title= t('views.products.description')
           %p.card-text= @product.description
 
   - if @product.category.products.where.not(id: @product.id).exists?
     %section.mt-5
-      %h3.mb-4 Related Products
+      %h3.mb-4= t('views.products.related_products')
       .row.row-cols-1.row-cols-md-2.row-cols-lg-4.g-4
         - @product.category.products.where.not(id: @product.id).limit(4).each do |related_product|
           .col
@@ -56,4 +56,4 @@
                 %p.card-text= number_to_currency(related_product.price)
                 = button_to add_item_cart_path(product_id: related_product.id), method: :post, class: "btn btn-outline-primary" do
                   %i.bi.bi-cart-plus
-                  Add to Cart
+                  = t('views.products.add_to_cart')

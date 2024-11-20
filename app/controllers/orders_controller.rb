@@ -7,8 +7,7 @@ class OrdersController < ApplicationController
     @orders = current_user.orders.order(created_at: :desc).page(params[:page]).per(10)
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @order = current_user.orders.build
@@ -22,7 +21,6 @@ class OrdersController < ApplicationController
 
     Order.transaction do
       if @order.save
-        # Transfer items from cart to order
         current_cart.cart_items.each do |cart_item|
           @order.order_items.create!(
             product: cart_item.product,
@@ -35,7 +33,7 @@ class OrdersController < ApplicationController
         current_cart.cart_items.destroy_all
 
         # Redirect to payment
-        redirect_to new_payment_path(order_id: @order.id), notice: "Order was successfully created."
+        redirect_to new_payment_path(order_id: @order.id), notice: t('views.orders.success')
       else
         render :new, status: :unprocessable_entity
       end
@@ -45,9 +43,9 @@ class OrdersController < ApplicationController
   def cancel
     if @order.may_cancel?
       @order.cancelled!
-      redirect_to @order, notice: "Order was successfully cancelled."
+      redirect_to @order, notice: t('views.orders.cancel_success')
     else
-      redirect_to @order, alert: "This order cannot be cancelled."
+      redirect_to @order, alert: t('views.orders.cannot_cancel')
     end
   end
 
@@ -55,6 +53,8 @@ class OrdersController < ApplicationController
 
   def set_order
     @order = current_user.orders.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to orders_path, alert: t('views.orders.not_found')
   end
 
   def order_params
@@ -63,7 +63,7 @@ class OrdersController < ApplicationController
 
   def check_cart_not_empty
     if current_cart.cart_items.empty?
-      redirect_to cart_path, alert: "Your cart is empty. Please add some items before checking out."
+      redirect_to cart_path, alert: t('views.orders.cart_empty')
     end
   end
 end

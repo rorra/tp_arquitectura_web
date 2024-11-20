@@ -1,0 +1,113 @@
+en:
+  activerecord:
+    models:
+      admin_user: "Admin User"
+      cart_item: "Cart Item"
+      order_item: "Order Item"
+      user: "User"
+      product: "Product"
+      category: "Category"
+      order: "Order"
+      cart: "Cart"
+    attributes:
+      admin_user:
+        name: "Name"
+        email: "Email"
+        password: "Password"
+        password_confirmation: "Password confirmation"
+        created_at: "Created"
+        updated_at: "Updated"
+        reset_password_sent_at: "Reset password sent at"
+        remember_created_at: "Remember created at"
+        sign_in_count: "Sign in count"
+        last_sign_in_at: "Last sign in at"
+        current_sign_in_at: "Current sign in at"
+        current_sign_in_ip: "Current sign in ip"
+        last_sign_in_ip: "Last sign in ip"
+      cart:
+        user: "User"
+        created_at: "Created"
+        updated_at: "Updated"
+        cart_items: "Cart Items"
+        products: "Products"
+      category:
+        name: "Name"
+        created_at: "Created"
+        updated_at: "Updated"
+        products: "Products"
+      cart_item:
+        order: "Order"
+        product: "Product"
+        quantity: "Quantity"
+        unit_price: "Unit price"
+        cart: "Cart"
+        created_at: "Created"
+        updated_at: "Updated"
+      order:
+        total_price: "Total price"
+        state: "State/Province"
+        city: "City"
+        zip: "ZIP code"
+        address: "Address"
+        phone: "Phone"
+        status: "Status"
+        order_items: "Order Items"
+        products: "Products"
+        created_at: "Created"
+        updated_at: "Updated"
+        statuses:
+          pending: "Pending"
+          paid: "Paid"
+          shipped: "Shipped"
+          cancelled: "Cancelled"
+      order_item:
+        order: "Order"
+        product: "Product"
+        quantity: "Quantity"
+        unit_price: "Unit price"
+        created_at: "Created"
+        updated_at: "Updated"
+      product:
+        name: "Name"
+        description: "Description"
+        price: "Price"
+        stock: "Stock"
+        category: "Category"
+        main_image: "Main Image"
+        additional_images: "Additional Images"
+        in_stock:
+          one: "1 unit left!"
+          other: "%{count} units left!"
+        out_of_stock: "Out of stock"
+        created_at: "Created"
+        updated_at: "Updated"
+        cart_items: "Cart Items"
+        order_items: "Order Items"
+      user:
+        name: "Name"
+        email: "Email"
+        password: "Password"
+        password_confirmation: "Password confirmation"
+        created_at: "Created"
+        updated_at: "Updated"
+        reset_password_sent_at: "Reset password sent at"
+        remember_created_at: "Remember created at"
+        sign_in_count: "Sign in count"
+        last_sign_in_at: "Last sign in at"
+        current_sign_in_at: "Current sign in at"
+        current_sign_in_ip: "Current sign in ip"
+        last_sign_in_ip: "Last sign in ip"
+        carts: "Carts"
+        orders: "Orders"
+    errors:
+      models:
+        product:
+          attributes:
+            price:
+              greater_than_or_equal_to_zero: "must be greater than or equal to zero"
+            stock:
+              greater_than_or_equal_to_zero: "must be greater than or equal to zero"
+        cart_item:
+          attributes:
+            quantity:
+              greater_than_zero: "must be greater than zero"

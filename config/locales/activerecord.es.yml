@@ -1,0 +1,113 @@
+es:
+  activerecord:
+    models:
+      admin_user: "Administrador"
+      cart_item: "Elemento de carrito"
+      order_item: "Elemento de pedido"
+      user: "Usuario"
+      product: "Producto"
+      category: "Categoría"
+      order: "Pedido"
+      cart: "Carrito"
+    attributes:
+      admin_user:
+        name: "Nombre"
+        email: "Correo electrónico"
+        password: "Contraseña"
+        password_confirmation: "Confirmación de contraseña"
+        created_at: "Fecha de creación"
+        updated_at: "Fecha de actualización"
+        reset_password_sent_at: "Fecha de envío de restablecimiento de contraseña"
+        remember_created_at: "Fecha de recordatorio de creación"
+        sign_in_count: "Número de inicio de sesión"
+        last_sign_in_at: "Última fecha de inicio de sesión"
+        current_sign_in_at: "Fecha de inicio de sesión actual"
+        current_sign_in_ip: "IP de inicio de sesión actual"
+        last_sign_in_ip: "IP de inicio de sesión anterior"
+      cart:
+        user: "Usuario"
+        created_at: "Fecha de creación"
+        updated_at: "Fecha de actualización"
+        cart_items: "Elementos de carrito"
+        products: "Productos"
+      category:
+        name: "Nombre"
+        created_at: "Fecha de creación"
+        updated_at: "Fecha de actualización"
+        products: "Productos"
+      cart_item:
+        order: "Pedido"
+        product: "Producto"
+        quantity: "Cantidad"
+        unit_price: "Precio unitario"
+        cart: "Carrito"
+        created_at: "Fecha de creación"
+        updated_at: "Fecha de actualización"
+      order:
+        total_price: "Precio total"
+        state: "Estado/Provincia"
+        city: "Ciudad"
+        zip: "Código postal"
+        address: "Dirección"
+        phone: "Teléfono"
+        status: "Estado"
+        order_items: "Elementos de pedido"
+        products: "Productos"
+        created_at: "Fecha de creación"
+        updated_at: "Fecha de actualización"
+        statuses:
+          pending: "Pendiente"
+          paid: "Pagado"
+          shipped: "Enviado"
+          cancelled: "Cancelado"
+      order_item:
+        order: "Pedido"
+        product: "Producto"
+        quantity: "Cantidad"
+        unit_price: "Precio unitario"
+        created_at: "Fecha de creación"
+        updated_at: "Fecha de actualización"
+      product:
+        name: "Nombre"
+        description: "Descripción"
+        price: "Precio"
+        stock: "Stock"
+        category: "Categoría"
+        main_image: "Imagen principal"
+        additional_images: "Imágenes adicionales"
+        in_stock:
+          one: "¡Queda 1 unidad!"
+          other: "¡Quedan %{count} unidades!"
+        out_of_stock: "Agotado"
+        created_at: "Fecha de creación"
+        updated_at: "Fecha de actualización"
+        cart_items: "Elementos de carrito"
+        order_items: "Elementos de pedido"
+      user:
+        name: "Nombre"
+        email: "Correo electrónico"
+        password: "Contraseña"
+        password_confirmation: "Confirmación de contraseña"
+        created_at: "Fecha de creación"
+        updated_at: "Fecha de actualización"
+        reset_password_sent_at: "Fecha de envío de restablecimiento de contraseña"
+        remember_created_at: "Fecha de recordatorio de creación"
+        sign_in_count: "Número de inicio de sesión"
+        last_sign_in_at: "Última fecha de inicio de sesión"
+        current_sign_in_at: "Fecha de inicio de sesión actual"
+        current_sign_in_ip: "IP de inicio de sesión actual"
+        last_sign_in_ip: "IP de inicio de sesión anterior"
+        carts: "Carritos"
+        orders: "Pedidos"
+    errors:
+      models:
+        product:
+          attributes:
+            price:
+              greater_than_or_equal_to_zero: "debe ser mayor o igual a cero"
+            stock:
+              greater_than_or_equal_to_zero: "debe ser mayor o igual a cero"
+        cart_item:
+          attributes:
+            quantity:
+              greater_than_zero: "debe ser mayor que cero"

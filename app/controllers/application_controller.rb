@@ -1,8 +1,7 @@
 class ApplicationController < ActionController::Base
   include ActiveStorage::SetCurrent
 
-  # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
-  allow_browser versions: :modern
+  before_action :set_locale
 
   helper_method :current_cart
 
@@ -19,5 +18,13 @@ class ApplicationController < ActionController::Base
     end
 
     @current_cart
+  end
+
+  def set_locale
+    I18n.locale = I18n.available_locales.include?(params[:locale]&.to_sym) ? params[:locale] : I18n.default_locale
+  end
+
+  def default_url_options
+    { locale: I18n.locale }
   end
 end

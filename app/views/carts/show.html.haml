@@ -3,7 +3,7 @@
     .col-lg-8
       .card
         .card-header.bg-white
-          %h2.h4.mb-0 Shopping Cart
+          %h2.h4.mb-0= t('views.cart.title')
 
         - if @cart_items.any?
           .card-body
@@ -23,39 +23,39 @@
                     %span.mx-2= item.quantity
                     = button_to add_item_cart_path(product_id: item.product.id), method: :post, class: "btn btn-sm btn-outline-secondary" do
                       %i.bi.bi-plus
-                    = button_to remove_item_cart_path(product_id: item.product.id, remove_all: true), 
-                              method: :delete, 
+                    = button_to remove_item_cart_path(product_id: item.product.id, remove_all: true),
+                              method: :delete,
                               class: "btn btn-sm btn-outline-danger ms-3",
-                              data: { turbo_confirm: "Remove this item from cart?" } do
+                              data: { turbo_confirm: removed_from_cart_message } do
                       %i.bi.bi-trash
-                      Remove
+                      = t('views.cart.remove')
                 .col-md-3.text-end
                   %p.h5= number_to_currency(item.total_price)
         - else
           .card-body.text-center.py-5
             %i.bi.bi-cart.display-1.text-muted
-            %h3.mt-3 Your cart is empty
-            %p.text-muted Start shopping to add items to your cart
-            = link_to "Continue Shopping", root_path, class: "btn btn-primary mt-3"
+            %h3.mt-3= cart_status_message(@cart)
+            %p.text-muted= t('views.cart.start_shopping')
+            = link_to t('views.cart.continue_shopping'), root_path, class: "btn btn-primary mt-3"
 
     .col-lg-4
       - if @cart_items.any?
         .card
           .card-header.bg-white
-            %h3.h5.mb-0 Order Summary
+            %h3.h5.mb-0= t('views.cart.order_summary')
           .card-body
             .d-flex.justify-content-between.mb-2
-              %span Items:
+              %span= t('views.cart.items')
               %span= @cart_items.sum(&:quantity)
             .d-flex.justify-content-between.mb-2
-              %span Subtotal:
+              %span= t('views.cart.subtotal')
               %span= number_to_currency(@cart_items.sum(&:total_price))
             %hr
             .d-flex.justify-content-between.mb-3
-              %span.h5 Total:
+              %span.h5= t('views.cart.total')
               %span.h5= number_to_currency(@cart_items.sum(&:total_price))
 
             - if user_signed_in?
-              = link_to "Proceed to Checkout", new_order_path, class: "btn btn-primary w-100"
+              = link_to t('views.cart.proceed_to_checkout'), new_order_path, class: "btn btn-primary w-100"
             - else
-              = link_to "Sign in to Checkout", new_user_session_path, class: "btn btn-primary w-100"
+              = link_to t('views.cart.sign_in_to_checkout'), new_user_session_path, class: "btn btn-primary w-100"

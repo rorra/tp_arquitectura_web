@@ -2,7 +2,7 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title= content_for(:title) || "Arquitectura Web"
+    %title= content_for(:title) || t('site.name')
     %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
     %meta{:content => "yes", :name => "apple-mobile-web-app-capable"}/
     = csrf_meta_tags
@@ -21,25 +21,33 @@
   %body
     %nav.navbar.navbar-expand-lg.navbar-light.bg-light
       .container
-        = link_to "Arquitectura Web", root_path, class: "navbar-brand"
-        %button.navbar-toggler{"aria-controls" => "navbarNav", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarNav", "data-bs-toggle" => "collapse", :type => "button"}
+        = link_to t('site.name'), root_path, class: "navbar-brand"
+        %button.navbar-toggler{"aria-controls" => "navbarNav", "aria-expanded" => "false", "aria-label" => t('navigation.toggle_menu'), "data-bs-target" => "#navbarNav", "data-bs-toggle" => "collapse", :type => "button"}
           %span.navbar-toggler-icon
         #navbarNav.collapse.navbar-collapse
           %ul.navbar-nav.me-auto
             %li.nav-item
-              = link_to "Home", root_path, class: "nav-link"
+              = link_to t('navigation.home'), root_path, class: "nav-link"
             %li.nav-item.dropdown
               %a.nav-link.dropdown-toggle#categoriesDropdown{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :href => "#", :role => "button"}
-                Categories
+                = t('navigation.categories')
               %ul.dropdown-menu{"aria-labelledby" => "categoriesDropdown"}
                 - Category.all.each do |category|
                   %li
                     = link_to category.name, category_path(category), class: "dropdown-item"
           .d-flex.align-items-center
+            .nav-item.dropdown.me-3
+              %button.btn.btn-outline-secondary.dropdown-toggle#languageDropdown{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :type => "button"}
+                = current_locale_name
+              %ul.dropdown-menu.dropdown-menu-end{"aria-labelledby" => "languageDropdown"}
+                %li
+                  = link_to "Español", url_for(locale: :es), class: "dropdown-item"
+                %li
+                  = link_to "English", url_for(locale: :en), class: "dropdown-item"
             - if user_signed_in?
               = link_to cart_path, class: "btn btn-outline-primary me-2" do
                 %i.bi.bi-cart
-                Cart
+                = t('navigation.cart')
                 - if current_cart.cart_items.count > 0
                   %span.badge.bg-primary= current_cart.cart_items.count
               .dropdown
@@ -48,25 +56,25 @@
                   = current_user.name
                 %ul.dropdown-menu.dropdown-menu-end{"aria-labelledby" => "userDropdown"}
                   %li
-                    = link_to "My Orders", orders_path, class: "dropdown-item"
+                    = link_to t('navigation.my_orders'), orders_path, class: "dropdown-item"
                   %li
-                    = link_to "Profile", edit_user_registration_path, class: "dropdown-item"
+                    = link_to t('navigation.profile'), edit_user_registration_path, class: "dropdown-item"
                   %li
                     %hr.dropdown-divider
                   %li
-                    = button_to "Sign Out", destroy_user_session_path, method: :delete, class: "dropdown-item"
+                    = button_to t('navigation.sign_out'), destroy_user_session_path, method: :delete, class: "dropdown-item"
             - else
-              = link_to "Sign In", new_user_session_path, class: "btn btn-outline-primary me-2"
-              = link_to "Sign Up", new_user_registration_path, class: "btn btn-primary"
+              = link_to t('navigation.sign_in'), new_user_session_path, class: "btn btn-outline-primary me-2"
+              = link_to t('navigation.sign_up'), new_user_registration_path, class: "btn btn-primary"
 
     - if notice
       .alert.alert-success.alert-dismissible.fade.show{role: "alert"}
         = notice
-        %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "alert", :type => "button"}
+        %button.btn-close{"aria-label" => t('common.close'), "data-bs-dismiss" => "alert", :type => "button"}
     - if alert
       .alert.alert-danger.alert-dismissible.fade.show{role: "alert"}
         = alert
-        %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "alert", :type => "button"}
+        %button.btn-close{"aria-label" => t('common.close'), "data-bs-dismiss" => "alert", :type => "button"}
 
     = yield
 
@@ -74,20 +82,20 @@
       .container.py-4
         .row
           .col-md-4.mb-3
-            %h5 About Us
-            %p Arquitectura Web is a fictional online store built with Ruby on Rails.
+            %h5= t('footer.about_us.title')
+            %p= t('footer.about_us.description')
           .col-md-4.mb-3
-            %h5 Quick Links
+            %h5= t('footer.quick_links.title')
             %ul.list-unstyled
-              %li= link_to "Home", root_path, class: "text-decoration-none"
-              %li= link_to "Products", products_path, class: "text-decoration-none"
-              %li= link_to "Categories", "#", class: "text-decoration-none"
+              %li= link_to t('footer.quick_links.home'), root_path, class: "text-decoration-none"
+              %li= link_to t('footer.quick_links.products'), products_path, class: "text-decoration-none"
+              %li= link_to t('footer.quick_links.categories'), "#", class: "text-decoration-none"
           .col-md-4.mb-3
-            %h5 Contact Us
+            %h5= t('footer.contact.title')
             %p
-              Email: rorra@rorra.com.ar
+              = t('footer.contact.email')
               %br
-              Phone: (11) 2371-3333
+              = t('footer.contact.phone')
         %hr
         .text-center
-          %p.mb-0 &copy; #{Time.current.year} Rodrigo Dominguez
+          %p.mb-0= t('footer.copyright', year: Time.current.year)

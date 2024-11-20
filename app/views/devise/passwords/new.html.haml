@@ -3,7 +3,7 @@
     .col-md-6
       .card.shadow
         .card-body.p-4
-          %h2.text-center.mb-4 Forgot your password?
+          %h2.text-center.mb-4= t('.forgot_your_password')
 
           = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
             = render "devise/shared/error_messages", resource: resource
@@ -13,7 +13,7 @@
               = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"
 
             .d-grid.gap-2
-              = f.submit "Send reset instructions", class: "btn btn-primary btn-lg"
+              = f.submit t('.send_me_reset_password_instructions'), class: "btn btn-primary btn-lg"
 
           %hr.my-4
 

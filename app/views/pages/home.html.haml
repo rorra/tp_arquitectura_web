@@ -2,11 +2,11 @@
   / Hero Section
   .p-4.p-md-5.mb-4.text-white.rounded.bg-dark
     .col-md-8.px-0
-      %h1.display-4.fst-italic Welcome to Arquitectura Web Store
-      %p.lead.my-3 Discover amazing products at great prices. Shop now and enjoy our special offers!
+      %h1.display-4.fst-italic= t('views.home.hero.title')
+      %p.lead.my-3= t('views.home.hero.description')
 
   / Featured Products Section
-  %h2.mb-4 Featured Products
+  %h2.mb-4= t('views.home.featured_products.title')
   .row.row-cols-1.row-cols-md-2.row-cols-lg-4.g-4
     - @featured_products.each do |product|
       .col
@@ -24,15 +24,15 @@
               %span.h5= number_to_currency(product.price)
               = button_to add_item_cart_path(product), method: :post, class: "btn btn-primary" do
                 %i.bi.bi-cart-plus
-                Add to Cart
+                = t('views.products.add_to_cart')
 
   / Categories Section
-  %h2.my-4 Shop by Category
+  %h2.my-4= t('views.home.categories.title')
   .row.row-cols-1.row-cols-md-2.row-cols-lg-4.g-4
     - @categories.each do |category|
       .col
         .card.h-100
           .card-body
             %h5.card-title= category.name
-            %p.card-text= pluralize(category.products.count, 'product')
-            = link_to "View Products", category_path(category), class: "btn btn-outline-primary"
+            %p.card-text= t('views.home.categories.product_count', count: category.products.count)
+            = link_to t('views.home.categories.view_products'), category_path(category), class: "btn btn-outline-primary"

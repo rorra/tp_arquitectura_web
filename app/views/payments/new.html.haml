@@ -3,20 +3,20 @@
     .col-md-8.offset-md-2
       .card
         .card-header
-          %h2 Payment for Order ##{@order.id}
+          %h2= t('views.payments.title', order_number: @order.id)
 
         .card-body
-          %p.text-muted Please confirm your payment details below to proceed.
+          %p.text-muted= t('views.payments.confirmation_message')
 
-          %h4 Order Summary
+          %h4= t('views.payments.order_summary')
           - if @order.order_items.any?
             %ul
               - @order.order_items.each do |item|
-                %li= "#{item.product.name} x#{item.quantity} - #{number_to_currency(item.total_price)}"
+                %li= t('views.payments.item_summary', name: item.product.name, quantity: item.quantity, price: number_to_currency(item.total_price))
             %p.text-end
-              %strong Total: #{number_to_currency(@order.total_price)}
+              %strong= t('views.payments.total', amount: number_to_currency(@order.total_price))
           - else
-            %p.text-danger Your order is empty. Please add items to your cart.
+            %p.text-danger= t('views.payments.empty_order')
 
           %div.text-center.mt-4
-            = button_to "Proceed to Payment", payments_path(order_id: @order.id), method: :post, class: "btn btn-success", data: { turbo: false }
+            = button_to t('views.payments.proceed_to_payment'), payments_path(order_id: @order.id), method: :post, class: "btn btn-success", data: { turbo: false }

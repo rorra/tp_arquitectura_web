@@ -33,4 +33,10 @@ class Cart < ApplicationRecord
   def total_price
     cart_items.sum { |item| item.quantity * item.unit_price }
   end
+
+  def display_total
+    I18n.t("number.currency.format.format",
+           n: total_price,
+           u: I18n.t("number.currency.format.unit"))
+  end
 end

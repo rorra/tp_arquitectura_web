@@ -8,6 +8,10 @@ class Order < ApplicationRecord
   validates :state, :city, :zip, :address, :phone, presence: true
   validates :total_price, presence: true, numericality: { greater_than_or_equal_to: 0 }
 
+  def status_text
+    I18n.t("activerecord.attributes.order.statuses.#{status}")
+  end
+
   def add_items_from_cart(cart)
     cart.cart_items.each do |cart_item|
       order_items.build(
@@ -24,5 +28,9 @@ class Order < ApplicationRecord
 
   def may_cancel?
     pending?
+  end
+
+  def self.human_status_name(status)
+    I18n.t("activerecord.attributes.order.statuses.#{status}")
   end
 end

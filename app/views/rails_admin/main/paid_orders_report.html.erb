@@ -1,19 +1,19 @@
-<h2>Paid Orders Report</h2>
+<h2><%= t('admin.reports.paid_orders.title') %></h2>
 
 <table class="table table-hover">
   <thead>
   <tr>
-    <th>Order #</th>
-    <th>Date</th>
-    <th>Total</th>
-    <th>Customer</th>
+    <th><%= t('admin.reports.paid_orders.order_number') %></th>
+    <th><%= t('admin.reports.paid_orders.date') %></th>
+    <th><%= t('admin.reports.paid_orders.total') %></th>
+    <th><%= t('admin.reports.paid_orders.customer') %></th>
   </tr>
   </thead>
   <tbody>
   <% @paid_orders.each do |order| %>
     <tr>
       <td><%= link_to order.id, rails_admin.show_path(model_name: 'order', id: order.id) %></td>
-      <td><%= order.created_at.strftime('%B %d, %Y') %></td>
+      <td><%= l(order.created_at, format: :long) %></td>
       <td><%= number_to_currency(order.total_price) %></td>
       <td><%= order.user.name %></td>
     </tr>

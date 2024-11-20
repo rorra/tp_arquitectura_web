@@ -1,0 +1,66 @@
+es:
+  routes:
+    home: "inicio"
+    about: "acerca de"
+    products: "productos"
+    categories: "categorías"
+    cart: "carrito"
+    orders: "pedidos"
+    profile: "perfil"
+    settings: "configuración"
+    admin: "administración"
+    sign_in: "iniciar-sesión"
+    sign_up: "registrarse"
+    sign_out: "cerrar-sesión"
+    checkout: "pagar"
+    payment: "pago"
+    confirmation: "confirmación"
+    success: "éxito"
+    failure: "error"
+    cancel: "cancelar"
+    new: "nuevo"
+    edit: "editar"
+    destroy: "eliminar"
+    show: "mostrar"
+    index: "índice"
+    search: "buscar"
+
+  url_helpers:
+    cart:
+      add_item: "agregar-artículo"
+      remove_item: "eliminar-artículo"
+      update_quantity: "actualizar-cantidad"
+      empty: "vaciar"
+      checkout: "pagar"
+
+    orders:
+      cancel: "cancelar"
+      confirm: "confirmar"
+      track: "seguir"
+
+    products:
+      featured: "destacados"
+      on_sale: "en-oferta"
+      new_arrivals: "nuevos-lanzamientos"
+
+    users:
+      orders: "pedidos"
+      favorites: "favoritos"
+      addresses: "direcciones"
+      payment_methods: "métodos-de-pago"
+
+    admin:
+      dashboard: "tablero"
+      reports: "informes"
+      settings: "configuración"
+      users: "usuarios"
+      products: "productos"
+      orders: "pedidos"
+      categories: "categorías"
+
+    support:
+      faq: "preguntas-frecuentes"
+      contact: "contacto"
+      help: "ayuda"
+      terms: "términos"
+      privacy: "privacidad"

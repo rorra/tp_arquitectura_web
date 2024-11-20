@@ -1,0 +1,66 @@
+en:
+  routes:
+    home: "home"
+    about: "about"
+    products: "products"
+    categories: "categories"
+    cart: "cart"
+    orders: "orders"
+    profile: "profile"
+    settings: "settings"
+    admin: "admin"
+    sign_in: "sign-in"
+    sign_up: "sign-up"
+    sign_out: "sign-out"
+    checkout: "checkout"
+    payment: "payment"
+    confirmation: "confirmation"
+    success: "success"
+    failure: "failure"
+    cancel: "cancel"
+    new: "new"
+    edit: "edit"
+    destroy: "destroy"
+    show: "show"
+    index: "index"
+    search: "search"
+
+  url_helpers:
+    cart:
+      add_item: "add-item"
+      remove_item: "remove-item"
+      update_quantity: "update-quantity"
+      empty: "empty"
+      checkout: "checkout"
+
+    orders:
+      cancel: "cancel"
+      confirm: "confirm"
+      track: "track"
+
+    products:
+      featured: "featured"
+      on_sale: "on-sale"
+      new_arrivals: "new-arrivals"
+
+    users:
+      orders: "orders"
+      favorites: "favorites"
+      addresses: "addresses"
+      payment_methods: "payment-methods"
+
+    admin:
+      dashboard: "dashboard"
+      reports: "reports"
+      settings: "settings"
+      users: "users"
+      products: "products"
+      orders: "orders"
+      categories: "categories"
+
+    support:
+      faq: "faq"
+      contact: "contact"
+      help: "help"
+      terms: "terms"
+      privacy: "privacy"
