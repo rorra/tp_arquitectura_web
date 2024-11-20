@@ -460,6 +460,7 @@ DEPENDENCIES
   importmap-rails
   kaminari
   mercadopago-sdk
+  mini_magick
   omniauth
   omniauth-google-oauth2
   ostruct

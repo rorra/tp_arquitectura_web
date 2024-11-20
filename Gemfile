@@ -18,6 +18,7 @@ gem "omniauth-google-oauth2" # Google OAuth2
 gem "sassc-rails" # SASSC for Rails
 gem "ostruct" # OpenStruct
 gem "image_processing" # Image processing
+gem "mini_magick" # MiniMagick for image processing
 gem "kaminari" # Pagination
 gem "mercadopago-sdk" # Mercado Pago SDK
 
