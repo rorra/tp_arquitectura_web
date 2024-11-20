@@ -24,11 +24,17 @@ gem 'bootstrap5-kaminari-views' # Bootstrap 5 Kaminari views
 gem "mercadopago-sdk" # Mercado Pago SDK
 gem "rack-cors" # Rack CORS
 
+group :test do
+end
+
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude" # Debug
   gem "brakeman", require: false # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "rubocop-rails-omakase", require: false # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rspec-rails" # Testing
+  gem 'shoulda-matchers' # Testing helpers
+  gem 'factory_bot_rails' # Testing factories
+  gem 'faker' # Testing data
 end
 
 group :development do
