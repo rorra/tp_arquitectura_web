@@ -32,6 +32,8 @@ secret_key_base: SECRET_KEY_BASE
 
 google_oauth_client_id: GOOGLE_OAUTH_CLIENT_ID
 google_oauth_client_secret: GOOGLE_OAUTH_CLIENT_SECRET
+
+mercadopago_access_token: MERCADOPAGO_ACCESS_TOKEN
 ```
 
 5. Iniciar los datos de la base de datos
@@ -44,4 +46,10 @@ bundle exec rails db:seed
 
 ```bash
 bundle exec rails server
+```
+
+7. Para correr los tests
+
+```bash
+bundle exec rspec
 ```
