@@ -11,10 +11,11 @@
     - @featured_products.each do |product|
       .col
         .card.h-100
-          - if product.main_image.attached?
-            = image_tag product.main_image.variant(resize_to_fill: [300, 300]), class: "card-img-top"
-          - else
-            = image_tag "placeholder.png", class: "card-img-top"
+          = link_to product_path(product), class: "text-decoration-none" do
+            - if product.main_image.attached?
+              = image_tag product.main_image.variant(resize_to_fill: [300, 300]), class: "card-img-top"
+            - else
+              = image_tag "placeholder.png", class: "card-img-top"
           .card-body
             %h5.card-title= product.name
             %p.card-text
