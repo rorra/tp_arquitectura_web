@@ -29,3 +29,8 @@
 
 en:
   hello: "Hello world"
+  admin:
+    actions:
+      paid_orders_report:
+        menu: "Paid Orders Report"
+        breadcrumb: "Paid Orders Report"

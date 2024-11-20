@@ -1,4 +1,8 @@
+require Rails.root.join('lib', 'rails_admin', 'paid_orders_report.rb')
+
 RailsAdmin.config do |config|
+  RailsAdmin::Config::Actions.register(RailsAdmin::Config::Actions::PaidOrdersReport)
+
   config.asset_source = :importmap
   config.asset_source = :sprockets
 
@@ -36,8 +40,9 @@ RailsAdmin.config do |config|
     delete
     show_in_app
 
-    ## With an audit adapter, you can add:
-    # history_index
-    # history_show
+    # Custom action for Paid Orders Report
+    paid_orders_report do
+      visible true # This makes the action appear in the navigation menu
+    end
   end
 end
