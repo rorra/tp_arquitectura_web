@@ -14,8 +14,8 @@ RSpec.describe "Payments", type: :request do
 
       it 'redirects to orders path' do
         get new_payment_path(order_id: order.id)
-        expect(response).to redirect_to(orders_path)
-        expect(flash[:alert]).to eq('This order is already paid.')
+        expect(response).to redirect_to(orders_path(locale: :en))
+        expect(flash[:alert]).to eq(I18n.t('views.payments.already_paid'))
       end
     end
 
@@ -23,9 +23,9 @@ RSpec.describe "Payments", type: :request do
       it 'displays the payment form successfully' do
         get new_payment_path(order_id: order.id)
         expect(response).to be_successful
-        expect(response.body).to include("Payment for Order ##{order.id}")
-        expect(response.body).to include("Order Summary")
-        expect(response.body).to include("Proceed to Payment")
+        expect(response.body).to include(I18n.t('views.payments.title', order_number: order.id))
+        expect(response.body).to include(I18n.t('views.payments.order_summary'))
+        expect(response.body).to include(I18n.t('views.payments.proceed_to_payment'))
       end
     end
   end
@@ -65,8 +65,8 @@ RSpec.describe "Payments", type: :request do
         allow(preference_double).to receive(:create).and_return({})
 
         post payments_path, params: valid_params
-        expect(response).to redirect_to(cart_path)
-        expect(flash[:alert]).to eq('There was an error connecting to the payment gateway.')
+        expect(response).to redirect_to(cart_path(locale: :en))
+        expect(flash[:alert]).to eq(I18n.t('views.payments.gateway_error'))
       end
     end
   end
@@ -88,16 +88,16 @@ RSpec.describe "Payments", type: :request do
 
         get success_payments_path, params: payment_params
         expect(order.reload.status).to eq('paid')
-        expect(response).to redirect_to(order_path(order))
-        expect(flash[:notice]).to eq('Payment was successful! Your order is now complete.')
+        expect(response).to redirect_to(order_path(order, locale: :en))
+        expect(flash[:notice]).to eq(I18n.t('views.payments.success'))
       end
     end
 
     context 'with invalid payment confirmation' do
       it 'redirects to cart with error message' do
         get success_payments_path, params: { order_id: order.id }
-        expect(response).to redirect_to(cart_path)
-        expect(flash[:alert]).to eq('Invalid payment confirmation details.')
+        expect(response).to redirect_to(cart_path(locale: :en))
+        expect(flash[:alert]).to eq(I18n.t('views.payments.invalid_confirmation'))
       end
     end
   end
@@ -105,8 +105,8 @@ RSpec.describe "Payments", type: :request do
   describe 'GET /payments/failure' do
     it 'redirects to cart with failure message' do
       get failure_payments_path, params: { order_id: order.id }
-      expect(response).to redirect_to(cart_path)
-      expect(flash[:alert]).to eq('Payment failed. Please try again or use a different payment method.')
+      expect(response).to redirect_to(cart_path(locale: :en))
+      expect(flash[:alert]).to eq(I18n.t('views.payments.payment_failed'))
     end
   end
 end

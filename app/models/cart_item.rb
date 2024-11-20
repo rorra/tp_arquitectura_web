@@ -2,11 +2,13 @@ class CartItem < ApplicationRecord
   belongs_to :cart
   belongs_to :product
 
-  validates :quantity, numericality: {
-    only_integer: true,
-    greater_than: 0,
-    message: -> { I18n.t("activerecord.errors.models.cart_item.attributes.quantity.greater_than_zero") }
-  }
+  validates :quantity,
+            presence: true,
+            numericality: {
+              only_integer: true,
+              greater_than: 0,
+              message: I18n.t("activerecord.errors.models.cart_item.attributes.quantity.greater_than_zero")
+            }
 
   def total_price
     product.price * quantity

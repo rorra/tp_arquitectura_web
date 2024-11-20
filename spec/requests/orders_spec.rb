@@ -58,8 +58,8 @@ RSpec.describe "Orders", type: :request do
     context 'with empty cart' do
       it 'redirects to cart with alert' do
         get new_order_path
-        expect(response).to redirect_to(cart_path)
-        expect(flash[:alert]).to include('Your cart is empty')
+        expect(response).to redirect_to(cart_path(locale: :en))
+        expect(flash[:alert]).to include(I18n.t('views.cart.empty_cart'))
       end
     end
   end

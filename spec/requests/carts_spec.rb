@@ -20,8 +20,8 @@ RSpec.describe "Carts", type: :request do
       expect {
         post add_item_cart_path(product_id: product.id)
       }.to change(CartItem, :count).by(1)
-      expect(response).to redirect_to(cart_path)
-      expect(flash[:notice]).to eq('Product added.')
+      expect(response).to redirect_to(cart_path(locale: :en))
+      expect(flash[:notice]).to eq(I18n.t('views.cart.added_to_cart'))
     end
   end
 
@@ -44,8 +44,8 @@ RSpec.describe "Carts", type: :request do
       expect {
         delete remove_item_cart_path(product_id: product.id, remove_all: true)
       }.to change(CartItem, :count).by(-1)
-      expect(response).to redirect_to(cart_path)
-      expect(flash[:notice]).to eq('Product removed.')
+      expect(response).to redirect_to(cart_path(locale: :en))
+      expect(flash[:notice]).to eq(I18n.t('views.cart.removed_from_cart'))
     end
   end
 end
