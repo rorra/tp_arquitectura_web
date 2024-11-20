@@ -8,13 +8,13 @@ class CartsController < ApplicationController
   def add_item
     product = Product.find(params[:product_id])
     @cart.add_product(product)
-    redirect_to cart_path, notice: 'Product agregado.'
+    redirect_to cart_path, notice: 'Product added.'
   end
 
   def remove_item
     product = Product.find(params[:product_id])
-    @cart.remove_product(product)
-    redirect_to cart_path, notice: 'Producto eliminado.'
+    @cart.remove_product(product, remove_all: params[:remove_all].present?)
+    redirect_to cart_path, notice: 'Product removed.'
   end
 
   def checkout

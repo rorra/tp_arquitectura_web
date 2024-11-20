@@ -1,22 +1,27 @@
 class Cart < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, optional: true
   has_many :cart_items, dependent: :destroy
 
   def add_product(product)
     current_item = cart_items.find_by(product_id: product.id)
     if current_item
       current_item.quantity += 1
+      current_item.save
     else
-      current_item = cart_items.build(product: product)
-      current_item.quantity = 1
+      cart_items.create!(
+        product: product,
+        quantity: 1,
+        unit_price: product.price
+      )
     end
-    current_item.save
   end
 
-  def remove_product(product)
+  def remove_product(product, remove_all: false)
     current_item = cart_items.find_by(product_id: product.id)
     if current_item
-      if current_item.quantity > 1
+      if remove_all
+        current_item.destroy
+      elsif current_item.quantity > 1
         current_item.quantity -= 1
         current_item.save
       else
