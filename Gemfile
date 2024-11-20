@@ -20,7 +20,7 @@ gem "ostruct" # OpenStruct
 gem "image_processing" # Image processing
 gem "mini_magick" # MiniMagick for image processing
 gem "kaminari" # Pagination
-gem 'bootstrap5-kaminari-views' # Bootstrap 5 Kaminari views
+gem "bootstrap5-kaminari-views" # Bootstrap 5 Kaminari views
 gem "mercadopago-sdk" # Mercado Pago SDK
 gem "rack-cors" # Rack CORS
 
@@ -32,9 +32,9 @@ group :development, :test do
   gem "brakeman", require: false # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "rubocop-rails-omakase", require: false # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rspec-rails" # Testing
-  gem 'shoulda-matchers' # Testing helpers
-  gem 'factory_bot_rails' # Testing factories
-  gem 'faker' # Testing data
+  gem "shoulda-matchers" # Testing helpers
+  gem "factory_bot_rails" # Testing factories
+  gem "faker" # Testing data
 end
 
 group :development do

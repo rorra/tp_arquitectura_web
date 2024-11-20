@@ -8,20 +8,20 @@ class CartsController < ApplicationController
   def add_item
     product = Product.find(params[:product_id])
     @cart.add_product(product)
-    redirect_to cart_path, notice: 'Product added.'
+    redirect_to cart_path, notice: "Product added."
   end
 
   def remove_item
     product = Product.find(params[:product_id])
     @cart.remove_product(product, remove_all: params[:remove_all].present?)
-    redirect_to cart_path, notice: 'Product removed.'
+    redirect_to cart_path, notice: "Product removed."
   end
 
   def checkout
     if user_signed_in?
       @order = Order.new
     else
-      redirect_to new_user_session_path, alert: 'Please sign in to proceed to checkout.'
+      redirect_to new_user_session_path, alert: "Please sign in to proceed to checkout."
     end
   end
 

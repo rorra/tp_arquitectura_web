@@ -9,7 +9,7 @@ module RailsAdmin
         end
 
         register_instance_option :link_icon do
-          'icon-file'
+          "icon-file"
         end
 
         register_instance_option :visible? do
@@ -18,10 +18,10 @@ module RailsAdmin
 
         register_instance_option :controller do
           Proc.new do
-            @paid_orders = Order.where(status: 'paid')
+            @paid_orders = Order.where(status: "paid")
 
-            # Render the view with RailsAdmin's layout
-            render :paid_orders_report, layout: 'rails_admin/application'
+            # Render the view with RailsAdmin"s layout
+            render :paid_orders_report, layout: "rails_admin/application"
           end
         end
       end

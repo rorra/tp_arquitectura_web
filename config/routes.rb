@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   # User authentication routes with custom controller
   devise_for :users, controllers: {
-    registrations: 'users/registrations'
+    registrations: "users/registrations"
   }
 
   # Admin authentication routes

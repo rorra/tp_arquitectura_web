@@ -35,7 +35,7 @@ class OrdersController < ApplicationController
         current_cart.cart_items.destroy_all
 
         # Redirect to payment
-        redirect_to new_payment_path(order_id: @order.id), notice: 'Order was successfully created.'
+        redirect_to new_payment_path(order_id: @order.id), notice: "Order was successfully created."
       else
         render :new, status: :unprocessable_entity
       end
@@ -45,9 +45,9 @@ class OrdersController < ApplicationController
   def cancel
     if @order.may_cancel?
       @order.cancelled!
-      redirect_to @order, notice: 'Order was successfully cancelled.'
+      redirect_to @order, notice: "Order was successfully cancelled."
     else
-      redirect_to @order, alert: 'This order cannot be cancelled.'
+      redirect_to @order, alert: "This order cannot be cancelled."
     end
   end
 
@@ -63,7 +63,7 @@ class OrdersController < ApplicationController
 
   def check_cart_not_empty
     if current_cart.cart_items.empty?
-      redirect_to cart_path, alert: 'Your cart is empty. Please add some items before checking out.'
+      redirect_to cart_path, alert: "Your cart is empty. Please add some items before checking out."
     end
   end
 end

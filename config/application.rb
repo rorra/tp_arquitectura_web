@@ -42,11 +42,11 @@ module TpArquitecturaWeb
     # CORS configuration
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins 'http://localhost:3000' # Allow your front-end origin
-        resource '*',
+        origins "http://localhost:3000" # Allow your front-end origin
+        resource "*",
                  headers: :any,
                  methods: [:get, :post, :put, :delete, :options],
-                 expose: ['Authorization']
+                 expose: ["Authorization"]
       end
     end
   end
