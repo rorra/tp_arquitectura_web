@@ -22,6 +22,7 @@ gem "mini_magick" # MiniMagick for image processing
 gem "kaminari" # Pagination
 gem 'bootstrap5-kaminari-views' # Bootstrap 5 Kaminari views
 gem "mercadopago-sdk" # Mercado Pago SDK
+gem "rack-cors" # Rack CORS
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude" # Debug

@@ -44,7 +44,7 @@ class OrdersController < ApplicationController
 
   def cancel
     if @order.may_cancel?
-      @order.cancel!
+      @order.cancelled!
       redirect_to @order, notice: 'Order was successfully cancelled.'
     else
       redirect_to @order, alert: 'This order cannot be cancelled.'

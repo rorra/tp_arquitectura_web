@@ -29,4 +29,8 @@ class Cart < ApplicationRecord
       end
     end
   end
+
+  def total_price
+    cart_items.sum { |item| item.quantity * item.unit_price }
+  end
 end

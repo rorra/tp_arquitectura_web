@@ -3,7 +3,7 @@ module OrdersHelper
     case status
     when 'pending'
       'warning'
-    when 'confirmed'
+    when 'paid'
       'info'
     when 'shipped'
       'success'

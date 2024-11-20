@@ -1,0 +1,22 @@
+.container
+  .row.mt-4
+    .col-md-8.offset-md-2
+      .card
+        .card-header
+          %h2 Payment for Order ##{@order.id}
+
+        .card-body
+          %p.text-muted Please confirm your payment details below to proceed.
+
+          %h4 Order Summary
+          - if @order.order_items.any?
+            %ul
+              - @order.order_items.each do |item|
+                %li= "#{item.product.name} x#{item.quantity} - #{number_to_currency(item.total_price)}"
+            %p.text-end
+              %strong Total: #{number_to_currency(@order.total_price)}
+          - else
+            %p.text-danger Your order is empty. Please add items to your cart.
+
+          %div.text-center.mt-4
+            = button_to "Proceed to Payment", payments_path(order_id: @order.id), method: :post, class: "btn btn-success", data: { turbo: false }

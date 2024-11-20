@@ -3,7 +3,7 @@ class Order < ApplicationRecord
   has_many :order_items, dependent: :destroy
   has_many :products, through: :order_items
 
-  enum status: { pending: 0, confirmed: 1, shipped: 2 }
+  enum status: { pending: 0, paid: 1, shipped: 2, cancelled: 3 }
 
   validates :state, :city, :zip, :address, :phone, presence: true
   validates :total_price, presence: true, numericality: { greater_than_or_equal_to: 0 }
@@ -23,6 +23,6 @@ class Order < ApplicationRecord
   end
 
   def may_cancel?
-    pending? || confirmed?
+    pending?
   end
 end

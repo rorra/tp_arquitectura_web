@@ -38,5 +38,16 @@ module TpArquitecturaWeb
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    # CORS configuration
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins 'http://localhost:3000' # Allow your front-end origin
+        resource '*',
+                 headers: :any,
+                 methods: [:get, :post, :put, :delete, :options],
+                 expose: ['Authorization']
+      end
+    end
   end
 end
