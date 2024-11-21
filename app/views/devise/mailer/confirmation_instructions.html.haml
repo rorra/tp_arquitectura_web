@@ -6,5 +6,5 @@
           %h1.h3.mb-4= t('devise.mailer.confirmation_instructions.greeting', recipient: @email)
           %p= t('devise.mailer.confirmation_instructions.instruction')
           %p= link_to t('devise.mailer.confirmation_instructions.action'),
-                     confirmation_url(@resource, confirmation_token: @token),
-                     class: "btn btn-primary"
+            confirmation_url(@resource, confirmation_token: @token),
+            class: "btn btn-primary"

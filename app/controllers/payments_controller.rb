@@ -4,9 +4,9 @@ class PaymentsController < ApplicationController
 
   def new
     @order = Order.find(params[:order_id])
-    redirect_to orders_path, alert: t('views.payments.already_paid') unless @order.pending?
+    redirect_to orders_path, alert: t("views.payments.already_paid") unless @order.pending?
   rescue ActiveRecord::RecordNotFound
-    redirect_to orders_path, alert: t('views.payments.order_not_found')
+    redirect_to orders_path, alert: t("views.payments.order_not_found")
   end
 
   def create
@@ -14,7 +14,7 @@ class PaymentsController < ApplicationController
     preference_data = build_preference_data
     process_payment_preference(preference_data)
   rescue ActiveRecord::RecordNotFound
-    redirect_to orders_path, alert: t('views.payments.order_not_found')
+    redirect_to orders_path, alert: t("views.payments.order_not_found")
   end
 
   def success
@@ -24,17 +24,17 @@ class PaymentsController < ApplicationController
     if payment_id
       process_successful_payment
     else
-      redirect_to cart_path, alert: t('views.payments.invalid_confirmation')
+      redirect_to cart_path, alert: t("views.payments.invalid_confirmation")
     end
   rescue ActiveRecord::RecordNotFound
-    redirect_to orders_path, alert: t('views.payments.order_not_found')
+    redirect_to orders_path, alert: t("views.payments.order_not_found")
   end
 
   def failure
     @order = Order.find(params[:order_id])
-    redirect_to cart_path, alert: t('views.payments.payment_failed')
+    redirect_to cart_path, alert: t("views.payments.payment_failed")
   rescue ActiveRecord::RecordNotFound
-    redirect_to orders_path, alert: t('views.payments.order_not_found')
+    redirect_to orders_path, alert: t("views.payments.order_not_found")
   end
 
   private
@@ -67,7 +67,7 @@ class PaymentsController < ApplicationController
     if preference[:response]
       redirect_to preference[:response]["sandbox_init_point"], allow_other_host: true
     else
-      redirect_to cart_path, alert: t('views.payments.gateway_error')
+      redirect_to cart_path, alert: t("views.payments.gateway_error")
     end
   end
 
@@ -79,9 +79,9 @@ class PaymentsController < ApplicationController
     if payment[:response] && payment[:response]["status"] == "approved"
       @order.update(status: "paid")
       current_cart.cart_items.destroy_all
-      redirect_to order_path(@order), notice: t('views.payments.success')
+      redirect_to order_path(@order), notice: t("views.payments.success")
     else
-      redirect_to cart_path, alert: t('views.payments.verification_failed')
+      redirect_to cart_path, alert: t("views.payments.verification_failed")
     end
   end
 end

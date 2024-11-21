@@ -29,10 +29,6 @@ Las credenciales deben tener la siguiente estructura:
 
 ```yaml
 secret_key_base: SECRET_KEY_BASE
-
-google_oauth_client_id: GOOGLE_OAUTH_CLIENT_ID
-google_oauth_client_secret: GOOGLE_OAUTH_CLIENT_SECRET
-
 mercadopago_access_token: MERCADOPAGO_ACCESS_TOKEN
 ```
 
@@ -53,3 +49,33 @@ bundle exec rails server
 ```bash
 bundle exec rspec
 ```
+
+8. Para probar una compra
+
+   Probar las compras con los datos de prueba de mercadolibre:
+
+   * Mastercard
+       - 5031 7557 3453 0604
+       - 123
+       - 11/25
+   * Visa
+       - 4509 9535 6623 3704
+       - 123
+       - 11/25
+   * American Express
+       - 3711 803032 57522
+       - 1234
+       - 11/25
+
+   Para el nombre, usar alguno de los provistos por mercadolibre
+
+   * APRO
+     - Pago aprobado
+     - (DNI) 12345678
+   * OTHE
+     - Rechazado por error general
+     - (DNI) 12345678
+
+9. Reporte
+
+En el administrador (/admin), aparece el reporte de ordenes pendientes de envío (/admin/paid_orders_report)

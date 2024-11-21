@@ -33,7 +33,7 @@ class OrdersController < ApplicationController
         current_cart.cart_items.destroy_all
 
         # Redirect to payment
-        redirect_to new_payment_path(order_id: @order.id), notice: t('views.orders.success')
+        redirect_to new_payment_path(order_id: @order.id), notice: t("views.orders.success")
       else
         render :new, status: :unprocessable_entity
       end
@@ -43,9 +43,9 @@ class OrdersController < ApplicationController
   def cancel
     if @order.may_cancel?
       @order.cancelled!
-      redirect_to @order, notice: t('views.orders.cancel_success')
+      redirect_to @order, notice: t("views.orders.cancel_success")
     else
-      redirect_to @order, alert: t('views.orders.cannot_cancel')
+      redirect_to @order, alert: t("views.orders.cannot_cancel")
     end
   end
 
@@ -54,7 +54,7 @@ class OrdersController < ApplicationController
   def set_order
     @order = current_user.orders.find(params[:id])
   rescue ActiveRecord::RecordNotFound
-    redirect_to orders_path, alert: t('views.orders.not_found')
+    redirect_to orders_path, alert: t("views.orders.not_found")
   end
 
   def order_params
@@ -63,7 +63,7 @@ class OrdersController < ApplicationController
 
   def check_cart_not_empty
     if current_cart.cart_items.empty?
-      redirect_to cart_path, alert: t('views.orders.cart_empty')
+      redirect_to cart_path, alert: t("views.orders.cart_empty")
     end
   end
 end

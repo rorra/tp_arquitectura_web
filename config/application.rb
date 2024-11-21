@@ -15,7 +15,7 @@ require "action_view/railtie"
 # require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
-# you've limited to :test, :development, or :production.
+# you"ve limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
 module TpArquitecturaWeb
@@ -36,7 +36,7 @@ module TpArquitecturaWeb
     config.time_zone = "Buenos Aires"
     # config.eager_load_paths << Rails.root.join("extras")
 
-    # Don't generate system test files.
+    # Don"t generate system test files.
     config.generators.system_tests = nil
 
     # Locale setup
@@ -44,7 +44,7 @@ module TpArquitecturaWeb
     config.i18n.available_locales = [:es, :en]
 
     # Locale load path
-    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
+    config.i18n.load_path += Dir[Rails.root.join("config", "locales", "**", "*.{rb,yml}")]
 
     # CORS configuration
     config.middleware.insert_before 0, Rack::Cors do
